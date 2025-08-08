@@ -2,15 +2,14 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'my-react-app'
-        CONTAINER_NAME = 'vite-app'
-        PORT = '80'
+        IMAGE_NAME = 'vite-frontend-app'
+        CONTAINER_NAME = 'vite-frontend-container'
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/shashiRitik/your-frontend-reposhashi.git'
+                git branch: 'master', url: 'https://github.com/shashiRitik/your-frontend-reposhashi.git'
             }
         }
 
@@ -20,7 +19,7 @@ pipeline {
             }
         }
 
-        stage('Build App') {
+        stage('Build Frontend') {
             steps {
                 sh 'npm run build'
             }
@@ -32,18 +31,13 @@ pipeline {
             }
         }
 
-        stage('Stop Old Container') {
+        stage('Deploy Container') {
             steps {
                 sh '''
-                    docker stop $CONTAINER_NAME || true
-                    docker rm $CONTAINER_NAME || true
+                docker stop $CONTAINER_NAME || true
+                docker rm $CONTAINER_NAME || true
+                docker run -d -p 80:80 --name $CONTAINER_NAME $IMAGE_NAME
                 '''
-            }
-        }
-
-        stage('Run New Container') {
-            steps {
-                sh 'docker run -d -p $PORT:80 --name $CONTAINER_NAME $IMAGE_NAME'
             }
         }
     }
