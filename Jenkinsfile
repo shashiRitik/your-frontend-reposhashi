@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE = "your-frontend-app"
         CONTAINER_NAME = "frontend-container"
         DOCKER_PORT = "80"
-        APP_PORT = "80"
+        APP_PORT = "3000"
     }
 
     stages {
