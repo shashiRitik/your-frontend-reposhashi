@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "your-frontend-app"
         CONTAINER_NAME = "frontend-container"
-        DOCKER_PORT = "80"
+        DOCKER_PORT = "3000
         APP_PORT = "3000"
     }
 
