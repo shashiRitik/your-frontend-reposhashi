@@ -14,4 +14,3 @@ If you are developing a production application, we recommend using TypeScript wi
 
 this is automate by jenkins
 hello how are you
-think
